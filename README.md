@@ -31,7 +31,7 @@ CriticalPrep tiene in ordine la tua campagna, ti aiuta durante la sessione e agg
 
 Al primo avvio il sistema chiede una conferma, perché la BETA non è ancora firmata con un certificato di Apple o
 Microsoft. Su Mac: **Impostazioni di Sistema › Privacy e sicurezza › Apri comunque**. Su Windows: **Ulteriori
-informazioni › Esegui comunque**. Durante la BETA l'app installata si chiama MasterHelper.
+informazioni › Esegui comunque**.
 
 ## English
 
@@ -51,7 +51,7 @@ happened. It works with any tabletop RPG.
 
 On first launch your system asks for confirmation, because the BETA isn't signed with an Apple or Microsoft
 certificate yet. On Mac: **System Settings › Privacy & Security › Open Anyway**. On Windows: **More info ›
-Run anyway**. During the BETA the installed app is called MasterHelper.
+Run anyway**.
 
 ---
 
