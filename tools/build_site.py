@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Genera la pagina di prodotto di CriticalPrep in italiano (index.html) e inglese (en/index.html).
+"""Genera la pagina di prodotto di CriticalPrep in italiano (index.html), inglese, francese, spagnolo e tedesco
+(en/, fr/, es/, de/).
 
-Un solo modello HTML, i testi delle due lingue in TEXT. Uso:  python3 tools/build_site.py
+Un solo modello HTML, i testi in italiano e inglese in TEXT, quelli delle altre lingue in more_languages.py. Uso:  python3 tools/build_site.py
 Nessuna dipendenza: basta il python3 di sistema.
 """
 from pathlib import Path
 import html
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from more_languages import texts as more_texts
 
 ROOT = Path(__file__).resolve().parent.parent
 REPO = "https://github.com/enrik90vol2/CriticalPrep"
@@ -143,8 +148,6 @@ TEXT = {
         "cta_text": "Scarica CriticalPrep e prepara la tua campagna con l'AI inclusa nella BETA.",
         "footer_rights": "Fatto per i Game Master.",
         "footer_links": [("#download", "Download"), (RELEASES, "Versioni"), (REPO + "/issues", "Segnala un problema")],
-        "other_lang": ("EN", "en/", "English"),
-        "this_lang": "IT",
     },
     "en": {
         "html_lang": "en",
@@ -268,12 +271,15 @@ TEXT = {
         "cta_text": "Download CriticalPrep and prepare your campaign with the AI included in the BETA.",
         "footer_rights": "Made for Game Masters.",
         "footer_links": [("#download", "Download"), (RELEASES, "Releases"), (REPO + "/issues", "Report a problem")],
-        "other_lang": ("IT", "../", "Italiano"),
-        "this_lang": "EN",
     },
 }
 
-IDS = {"it": ("come-funziona", "funzioni"), "en": ("how-it-works", "features")}
+TEXT.update(more_texts(VERSION, REPO, RELEASES))
+
+# (codice, etichetta nel selettore, nome della lingua, cartella; l'italiano è alla radice)
+LANGS = [("it", "IT", "Italiano", ""), ("en", "EN", "English", "en/"), ("fr", "FR", "Français", "fr/"),
+         ("es", "ES", "Español", "es/"), ("de", "DE", "Deutsch", "de/")]
+IDS = {"it": ("come-funziona", "funzioni")}
 
 
 def wiki_links(text):
@@ -308,8 +314,8 @@ def window(m, active, body, label):
 
 def mock_world(m):
     cards = "".join(
-        f'<div class="mini"><span class="tag{" gold" if t in ("Quest",) else ""}">{html.escape(t)}</span><b>{html.escape(n)}</b><small>{html.escape(d)}</small></div>'
-        for t, n, d in (m["e1"], m["e2"], m["e3"], m["e4"]))
+        f'<div class="mini"><span class="tag{" gold" if i == 3 else ""}">{html.escape(t)}</span><b>{html.escape(n)}</b><small>{html.escape(d)}</small></div>'
+        for i, (t, n, d) in enumerate((m["e1"], m["e2"], m["e3"], m["e4"])))
     return f'<h4>{m["wb_title"]}</h4><div class="sub">{m["wb_sub"]}</div><div class="cards">{cards}</div>'
 
 
@@ -340,9 +346,15 @@ def features(items):
 def page(lang):
     t = TEXT[lang]
     m = t["mock"]
-    how_id, feat_id = IDS[lang]
+    how_id, feat_id = IDS.get(lang, ("how-it-works", "features"))
     prefix = "" if lang == "it" else "../"
-    other_label, other_href, other_name = t["other_lang"]
+    folder = {code: path for code, _, _, path in LANGS}
+    switcher = "".join(
+        f'<span aria-current="true">{label}</span>' if code == lang else
+        f'<a href="{prefix + folder[code] if lang != "it" else folder[code]}" hreflang="{code}" lang="{code}" title="{name}" '
+        f'onclick="try{{localStorage.setItem(\'cp-lang\',\'{code}\')}}catch(e){{}}">{label}</a>'
+        for code, label, name, _ in LANGS)
+    alternates = "".join(f'<link rel="alternate" hreflang="{code}" href="{SITE}{path}">\n' for code, _, _, path in LANGS)
     dl_id = "download"
     nav = "".join(f'<a href="{h}">{l}</a>' for h, l in t["nav"])
     pillars = "".join(f'<div class="pillar"><div class="num">{i + 1}</div><h3>{n}</h3><p>{d}</p></div>' for i, (n, d) in enumerate(t["pillars"]))
@@ -354,11 +366,12 @@ def page(lang):
     mac_steps = "".join(f"<li>{s}</li>" for s in t["mac_steps"])
     win_steps = "".join(f"<li>{s}</li>" for s in t["win_steps"])
     footer_links = "".join(f'<a href="{h}">{l}</a>' for h, l in t["footer_links"])
-    canonical = SITE if lang == "it" else SITE + "en/"
+    canonical = SITE + folder[lang]
     redirect = """<script>
 try {
   var saved = localStorage.getItem("cp-lang");
-  if (!saved && !/^it\\b/i.test(navigator.language || "") && location.hash === "") location.replace("en/");
+  var m = /^(en|fr|es|de)\\b/i.exec(navigator.language || "");
+  if (!saved && m && location.hash === "") location.replace(m[1].toLowerCase() + "/");
 } catch (e) {}
 </script>""" if lang == "it" else ""
 
@@ -370,9 +383,7 @@ try {
 <title>{t['title']}</title>
 <meta name="description" content="{html.escape(t['description'])}">
 <link rel="canonical" href="{canonical}">
-<link rel="alternate" hreflang="it" href="{SITE}">
-<link rel="alternate" hreflang="en" href="{SITE}en/">
-<link rel="alternate" hreflang="x-default" href="{SITE}">
+{alternates}<link rel="alternate" hreflang="x-default" href="{SITE}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{t['title']}">
 <meta property="og:description" content="{html.escape(t['description'])}">
@@ -389,7 +400,7 @@ try {
   <div class="wrap">
     <a class="brand" href="#top"><img src="{prefix}assets/icon.png" alt="" width="30" height="30">CriticalPrep</a>
     <nav class="nav" aria-label="{t['nav_download']}">{nav}</nav>
-    <div class="lang" aria-label="Lingua / Language"><span aria-current="true">{t['this_lang']}</span><a href="{other_href}" hreflang="{'en' if lang == 'it' else 'it'}" lang="{'en' if lang == 'it' else 'it'}" title="{other_name}" onclick="try{{localStorage.setItem('cp-lang','{'en' if lang == 'it' else 'it'}')}}catch(e){{}}">{other_label}</a></div>
+    <div class="lang" aria-label="Lingua / Language">{switcher}</div>
     <a class="btn btn-primary" href="#{dl_id}">{t['nav_download']}</a>
   </div>
 </header>
@@ -531,10 +542,11 @@ try {
 
 def main():
     (ROOT / "index.html").write_text(page("it"), encoding="utf-8")
-    (ROOT / "en").mkdir(exist_ok=True)
-    (ROOT / "en" / "index.html").write_text(page("en"), encoding="utf-8")
+    for code, _, _, path in LANGS[1:]:
+        (ROOT / path).mkdir(exist_ok=True)
+        (ROOT / path / "index.html").write_text(page(code), encoding="utf-8")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
-    print("index.html, en/index.html")
+    print("index.html, " + ", ".join(path + "index.html" for _, _, _, path in LANGS[1:]))
 
 
 if __name__ == "__main__":

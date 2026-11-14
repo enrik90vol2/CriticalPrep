@@ -8,6 +8,9 @@ L'assistente per Game Master per Mac e Windows · The Game Master's assistant fo
 <p align="center">
   <a href="https://enrik90vol2.github.io/CriticalPrep/">Sito</a> ·
   <a href="https://enrik90vol2.github.io/CriticalPrep/en/">Website</a> ·
+  <a href="https://enrik90vol2.github.io/CriticalPrep/fr/">Site</a> ·
+  <a href="https://enrik90vol2.github.io/CriticalPrep/es/">Sitio</a> ·
+  <a href="https://enrik90vol2.github.io/CriticalPrep/de/">Webseite</a> ·
   <a href="https://github.com/enrik90vol2/CriticalPrep/releases/latest">Download</a>
 </p>
 
