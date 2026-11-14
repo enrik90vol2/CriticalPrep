@@ -10,7 +10,7 @@ import html
 ROOT = Path(__file__).resolve().parent.parent
 REPO = "https://github.com/enrik90vol2/CriticalPrep"
 SITE = "https://enrik90vol2.github.io/CriticalPrep/"
-VERSION = "0.8"
+VERSION = "0.9"
 DL_MAC = f"{REPO}/releases/latest/download/CriticalPrep-macOS.dmg"
 DL_WIN = f"{REPO}/releases/latest/download/CriticalPrep-Windows-Setup.exe"
 RELEASES = f"{REPO}/releases"
@@ -110,7 +110,7 @@ TEXT = {
         "dl_eyebrow": "Download",
         "dl_title": "Scarica CriticalPrep BETA " + VERSION,
         "dl_lead": "La stessa app su Mac e su Windows, con le stesse funzioni. Gratis durante la versione di prova. Disponibile in italiano, inglese, francese, spagnolo e tedesco.",
-        "mac_title": "macOS", "mac_meta": "Mac con Apple silicon o Intel · macOS 14 Sonoma o successivo · DMG, 9 MB",
+        "mac_title": "macOS", "mac_meta": "Mac con Apple silicon o Intel · macOS 14 Sonoma o successivo · DMG, 18 MB",
         "mac_btn": "Scarica per Mac",
         "mac_steps": [
             "Apri il file <strong>CriticalPrep-macOS.dmg</strong> e trascina l'app nella cartella <strong>Applicazioni</strong>.",
@@ -118,7 +118,7 @@ TEXT = {
             "Apri <strong>Impostazioni di Sistema › Privacy e sicurezza</strong> e premi <strong>Apri comunque</strong> accanto all'app. Basta farlo una volta.",
         ],
         "mac_req": "Per l'AI locale servono almeno 16 GB di memoria.",
-        "win_title": "Windows", "win_meta": "Windows 10 o 11 a 64 bit · installer, 83 MB",
+        "win_title": "Windows", "win_meta": "Windows 10 o 11 a 64 bit · installer, 85 MB",
         "win_btn": "Scarica per Windows",
         "win_steps": [
             "Apri <strong>CriticalPrep-Windows-Setup.exe</strong>: l'installazione non chiede permessi di amministratore.",
@@ -235,7 +235,7 @@ TEXT = {
         "dl_eyebrow": "Download",
         "dl_title": "Download CriticalPrep BETA " + VERSION,
         "dl_lead": "The same app on Mac and Windows, with the same features. Free during the trial version. Available in Italian, English, French, Spanish and German.",
-        "mac_title": "macOS", "mac_meta": "Mac with Apple silicon or Intel · macOS 14 Sonoma or later · DMG, 9 MB",
+        "mac_title": "macOS", "mac_meta": "Mac with Apple silicon or Intel · macOS 14 Sonoma or later · DMG, 18 MB",
         "mac_btn": "Download for Mac",
         "mac_steps": [
             "Open <strong>CriticalPrep-macOS.dmg</strong> and drag the app into the <strong>Applications</strong> folder.",
@@ -243,7 +243,7 @@ TEXT = {
             "Open <strong>System Settings › Privacy &amp; Security</strong> and click <strong>Open Anyway</strong> next to the app. You only need to do this once.",
         ],
         "mac_req": "Local AI needs at least 16 GB of memory.",
-        "win_title": "Windows", "win_meta": "Windows 10 or 11, 64-bit · installer, 83 MB",
+        "win_title": "Windows", "win_meta": "Windows 10 or 11, 64-bit · installer, 85 MB",
         "win_btn": "Download for Windows",
         "win_steps": [
             "Open <strong>CriticalPrep-Windows-Setup.exe</strong>: installing doesn't need administrator rights.",

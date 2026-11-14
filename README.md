@@ -22,7 +22,7 @@ CriticalPrep tiene in ordine la tua campagna, ti aiuta durante la sessione e agg
 - **Gioca**: ricerca immediata, domande alla campagna e registrazione della sessione dal microfono o da Discord.
 - **Aggiorna**: dopo la sessione l'AI propone le modifiche alle schede e tu scegli quali applicare.
 
-**BETA 0.8, gratuita con AI inclusa.** Disponibile in italiano, inglese, francese, spagnolo e tedesco.
+**BETA 0.9, gratuita con AI inclusa.** Disponibile in italiano, inglese, francese, spagnolo e tedesco.
 
 | | Download | Requisiti |
 |---|---|---|
@@ -42,7 +42,7 @@ happened. It works with any tabletop RPG.
 - **Play**: instant search, questions to the campaign and session recording from the microphone or Discord.
 - **Update**: after the session the AI proposes changes to your entries and you choose which to apply.
 
-**BETA 0.8, free with AI included.** Available in Italian, English, French, Spanish and German.
+**BETA 0.9, free with AI included.** Available in Italian, English, French, Spanish and German.
 
 | | Download | Requirements |
 |---|---|---|
