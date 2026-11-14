@@ -109,7 +109,7 @@ TEXT = {
         "ai_note": "Con l'AI locale i testi restano sul tuo computer. Con l'AI inclusa o i fornitori cloud vengono inviati al fornitore solo per elaborare la richiesta. Le chiavi che inserisci restano nel portachiavi del sistema.",
         "dl_eyebrow": "Download",
         "dl_title": "Scarica CriticalPrep BETA " + VERSION,
-        "dl_lead": "La stessa app su Mac e su Windows, con le stesse funzioni. Gratis durante la versione di prova.",
+        "dl_lead": "La stessa app su Mac e su Windows, con le stesse funzioni. Gratis durante la versione di prova. Disponibile in italiano, inglese, francese, spagnolo e tedesco.",
         "mac_title": "macOS", "mac_meta": "Mac con Apple silicon o Intel · macOS 14 Sonoma o successivo · DMG, 9 MB",
         "mac_btn": "Scarica per Mac",
         "mac_steps": [
@@ -234,7 +234,7 @@ TEXT = {
         "ai_note": "With local AI your text stays on your computer. With the included AI or cloud providers it is sent to the provider only to process the request. The keys you enter stay in your system's keychain.",
         "dl_eyebrow": "Download",
         "dl_title": "Download CriticalPrep BETA " + VERSION,
-        "dl_lead": "The same app on Mac and Windows, with the same features. Free during the trial version.",
+        "dl_lead": "The same app on Mac and Windows, with the same features. Free during the trial version. Available in Italian, English, French, Spanish and German.",
         "mac_title": "macOS", "mac_meta": "Mac with Apple silicon or Intel · macOS 14 Sonoma or later · DMG, 9 MB",
         "mac_btn": "Download for Mac",
         "mac_steps": [
